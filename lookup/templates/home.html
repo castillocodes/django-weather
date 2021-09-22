@@ -2,6 +2,23 @@
 
 {% block content %}
 
-<h1>You've got this!</h1>
+{% if zipcode %}
+    <h3>{{ zipcode }}</h3>
+{% endif %}
+
+{% if api %}
+    {% if api == "Error" %}
+        There was an error, please try again.
+    {% else %}
+    <div class="card {{ category_color }}" style="width: 40rem;">
+        <div class="card-body">
+          <h1 class="card-title">{{ api.0.Category.Name|upper }}</h1>
+          <h4 class="card-title">Current {{ api.0.ReportingArea }} Air Quality: {{ api.0.AQI }}</h3>
+          <p>{{ category_description }}</p>
+        </div>
+      </div>
+
+    {% endif %}
+{% endif %}
 
 {% endblock %}
